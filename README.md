@@ -17,6 +17,7 @@ Vue ScriptShifter is a tool that converts Vue components from Options API to `<s
   - [Error Handling](#error-handling)
   - [Example](#example)
   - [License](#license)
+  - [Changelog](https://github.com/UnrefinedBrain/vue-scriptshifter/releases)
 
 ## How to Use
 
