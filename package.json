@@ -1,0 +1,48 @@
+{
+  "name": "scriptshifter",
+  "description": "Automatically convert Vue components from Options API to <script setup>",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": {
+    "name": "UnrefinedBrain",
+    "url": "https://github.com/UnrefinedBrain"
+  },
+  "keywords": [
+    "vue",
+    "script setup",
+    "composition api",
+    "options",
+    "codemod",
+    "converter"
+  ],
+  "type": "module",
+  "bin": {
+    "scriptshifter": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc && vite build && chmod +x dist/cli.js",
+    "lint": "eslint . --ext .ts",
+    "test": "vitest --coverage"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "change-case": "^5.4.4",
+    "vue-metamorph": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "@vitest/coverage-v8": "2.1.5",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.2.6",
+    "vitest": "^2.1.5"
+  }
+}

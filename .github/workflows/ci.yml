@@ -1,0 +1,23 @@
+name: CI
+on: push
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v3.0.0
+        with:
+          version: ^9.0.0
+          run_install: false
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build
