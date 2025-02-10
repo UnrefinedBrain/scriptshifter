@@ -1,7 +1,7 @@
 # ScriptShifter
 
 
-[![NPM Version](https://img.shields.io/npm/v/scriptshifter)](https://npmjs.com/package/scriptshifter) [![NPM License](https://img.shields.io/npm/l/scriptshifter)](https://github.com/UnrefinedBrain/vue-scriptshifter/blob/master/LICENSE) [![GitHub Repo stars](https://img.shields.io/github/stars/UnrefinedBrain/vue-scriptshifter)](https://github.com/UnrefinedBrain/vue-scriptshifter) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/UnrefinedBrain/vue-scriptshifter/ci.yml)](https://github.com/UnrefinedBrain/vue-scriptshifter/actions)
+[![NPM Version](https://img.shields.io/npm/v/scriptshifter)](https://npmjs.com/package/scriptshifter) [![NPM License](https://img.shields.io/npm/l/scriptshifter)](https://github.com/UnrefinedBrain/scriptshifter/blob/master/LICENSE) [![GitHub Repo stars](https://img.shields.io/github/stars/UnrefinedBrain/scriptshifter)](https://github.com/UnrefinedBrain/scriptshifter) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/UnrefinedBrain/scriptshifter/ci.yml)](https://github.com/UnrefinedBrain/scriptshifter/actions)
 
 Vue ScriptShifter is a tool that converts Vue components from Options API to `<script setup>` with Composition API.
 
@@ -17,7 +17,7 @@ Vue ScriptShifter is a tool that converts Vue components from Options API to `<s
   - [Error Handling](#error-handling)
   - [Example](#example)
   - [License](#license)
-  - [Changelog](https://github.com/UnrefinedBrain/vue-scriptshifter/releases)
+  - [Changelog](https://github.com/UnrefinedBrain/scriptshifter/releases)
 
 ## How to Use
 
@@ -54,7 +54,7 @@ This tool can ruin the formatting of your SFC. Use your favorite code formatting
 
 ## About Perfection
 
-The goal of this tool is not to achieve a perfect conversion, but instead to get you 98% of the way there. Ideally, there should be very few things to fix manually, if any. However, there may be some edge cases that cause it to emit output that is semantically incorrect. Please [file a GitHub issue](https://github.com/UnrefinedBrain/vue-scriptshifter/issues/new) with a minimal repro and the output you expected if you encounter such an edge case.
+The goal of this tool is not to achieve a perfect conversion, but instead to get you 98% of the way there. Ideally, there should be very few things to fix manually, if any. However, there may be some edge cases that cause it to emit output that is semantically incorrect. Please [file a GitHub issue](https://github.com/UnrefinedBrain/scriptshifter/issues/new) with a minimal repro and the output you expected if you encounter such an edge case.
 
 ## Feature Support
 
