@@ -11,6 +11,10 @@
     "name": "UnrefinedBrain",
     "url": "https://github.com/UnrefinedBrain"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnrefinedBrain/scriptshifter.git"
+  },
   "keywords": [
     "vue",
     "script setup",
