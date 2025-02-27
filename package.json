@@ -46,8 +46,8 @@
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^5.4.12",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.0",
     "vitest": "^3.0.0"
   }
 }
