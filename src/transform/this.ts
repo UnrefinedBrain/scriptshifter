@@ -24,6 +24,7 @@ import { addStore } from './vuex';
 import { VueVersion } from '../options';
 import { getStringKey, isStringKey, isThisDotRefs } from '../analyze/utils';
 import { refName } from '../analyze/refs';
+import { isVersionGtEq } from '../version';
 
 function isThisExpression(object: n.MemberExpression['object']) {
   if (object.type === 'ThisExpression') {
@@ -44,7 +45,16 @@ type TransformArgs = {
   ast: ScriptSetupAst;
   vueVersion: VueVersion;
   isTypescript: boolean;
-  node: ProvideNode | ComputedNode | MethodNode | LifecycleHookNode | WatcherNode | DataNode | CreatedHookNode | OptionsNode | PiniaStateNode;
+  node:
+  | ProvideNode
+  | ComputedNode
+  | MethodNode
+  | LifecycleHookNode
+  | WatcherNode
+  | DataNode
+  | CreatedHookNode
+  | OptionsNode
+  | PiniaStateNode;
 };
 
 const createAccessPatterns = (
@@ -254,7 +264,7 @@ const createAccessPatterns = (
       ast.wasEmitted.router = true;
       insertNamedImport(
         ast,
-        vueVersion === '3.4' || vueVersion === '3.5'
+        isVersionGtEq(vueVersion, '3.4')
           ? 'vue-router'
           : 'vue-router/composables',
         'useRouter',
@@ -366,12 +376,12 @@ export function transformThisExpressions(ast: ScriptSetupAst, nodeTypes: NodeTyp
 
           if (
             declarator.init?.type === 'ThisExpression'
-              || (declarator.init && isThisDotRefs(declarator.init))
+            || (declarator.init && isThisDotRefs(declarator.init))
           ) {
             const vars = declarator.id.properties.reduce((prev, cur) => {
               if (cur.type === 'Property'
-                  && cur.key.type === 'Identifier'
-                  && cur.value.type === 'Identifier') {
+                && cur.key.type === 'Identifier'
+                && cur.value.type === 'Identifier') {
                 prev[cur.value.name] = cur.key.name;
               }
               return prev;

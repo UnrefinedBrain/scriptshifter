@@ -1,6 +1,7 @@
 import { builders as b } from 'vue-metamorph';
 import type { RefsNode } from '../ast';
 import { VueVersion } from '../options';
+import { isVersionLtEq } from '../version';
 
 export function renderRefsNode(node: RefsNode, vueVersion: VueVersion, isTypescript: boolean) {
   // vue 2.7 / 3.4: const refName = ref(null);
@@ -26,7 +27,7 @@ export function renderRefsNode(node: RefsNode, vueVersion: VueVersion, isTypescr
     [
       b.variableDeclarator(
         b.identifier(node.name),
-        vueVersion === '2.7' || vueVersion === '3.4'
+        isVersionLtEq(vueVersion, '3.4')
           ? refCall
           : b.callExpression(
             b.identifier('useTemplateRef'),

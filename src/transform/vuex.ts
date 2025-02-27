@@ -2,6 +2,7 @@ import { builders as b } from 'vue-metamorph';
 import type { ScriptSetupAst } from '../ast';
 import { insertNamedImport } from './utils';
 import { VueVersion } from '../options';
+import { isVersionGtEq } from '../version';
 
 const identity = <T>(i: T) => i;
 
@@ -42,10 +43,10 @@ export const storeDeclarationVue2 = (isTypescript: boolean) => b.variableDeclara
 );
 
 export const addStore = (ast: ScriptSetupAst, vueVersion: VueVersion, isTypescript: boolean) => {
-  if (vueVersion === '3.4' || vueVersion === '3.5') {
+  if (isVersionGtEq(vueVersion, '3.4')) {
     ast.beforeOptionsStatements.push(useStoreDeclarationVue3);
     insertNamedImport(ast, 'vuex', 'useStore');
-  } else if (vueVersion === '2.7') {
+  } else {
     insertNamedImport(ast, 'vue', 'getCurrentInstance');
     ast.beforeOptionsStatements.push(storeDeclarationVue2(isTypescript));
   }
