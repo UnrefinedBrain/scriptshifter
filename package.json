@@ -1,7 +1,7 @@
 {
   "name": "scriptshifter",
   "description": "Automatically convert Vue components from Options API to <script setup>",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "license": "MIT",
   "files": [
     "dist",
