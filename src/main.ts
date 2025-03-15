@@ -34,7 +34,7 @@ const cli = createVueMetamorphCli({
     filesProcessed,
   }) {
     if (done || aborted) {
-      const filesTransformed = Object.values(stats)[0]!;
+      const filesTransformed = Object.values(stats)[0] ?? 0;
       console.log(
         `\n  ✨ ${chalk.green('Done!')} Converted ${chalk.cyan(filesTransformed)} of ${chalk.cyan(filesProcessed)} matching files\n`,
       );
