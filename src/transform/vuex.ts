@@ -11,7 +11,7 @@ export const useStoreDeclarationVue3 = b.variableDeclaration(
   'const',
   [
     b.variableDeclarator(
-      b.identifier('store'),
+      b.identifier('$store'),
       b.callExpression(
         b.identifier('useStore'),
         [],
@@ -25,7 +25,7 @@ export const storeDeclarationVue2 = (isTypescript: boolean) => b.variableDeclara
   'const',
   [
     b.variableDeclarator(
-      b.identifier('store'),
+      b.identifier('$store'),
       b.memberExpression(
         b.memberExpression(
           (isTypescript ? b.tsNonNullExpression : identity)(b.callExpression(

@@ -227,7 +227,7 @@ const createAccessPatterns = (
   },
 
   $store() {
-    path.replace(b.identifier('store'));
+    path.replace(b.identifier('$store'));
 
     if (!ast.wasEmitted.store) {
       addStore(ast, vueVersion, isTypescript);

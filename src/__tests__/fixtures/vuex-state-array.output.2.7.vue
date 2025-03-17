@@ -4,7 +4,7 @@
 
 <script setup>
 import { computed, getCurrentInstance } from 'vue';
-const store = getCurrentInstance().proxy.$store;
+const $store = getCurrentInstance().proxy.$store;
 
 /**
  * accesses a vuex state 
@@ -17,7 +17,7 @@ const getVuexState = (obj, namespace, path = namespace.split('/')) => {
   return getVuexState(obj[path.splice(0, 1)[0]], namespace, path);
 };
 
-const item = computed(() => getVuexState(store.state, 'Foo/Bar')['item']);
+const item = computed(() => getVuexState($store.state, 'Foo/Bar')['item']);
 
 const foo = computed(() => {
   return item.value * 5;

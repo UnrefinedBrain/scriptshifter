@@ -4,13 +4,13 @@
 
 <script setup>
 import { computed, getCurrentInstance } from 'vue';
-const store = getCurrentInstance().proxy.$store;
-const myGetter = computed(() => store.getters['MyModule/myGetter']);
+const $store = getCurrentInstance().proxy.$store;
+const myGetter = computed(() => $store.getters['MyModule/myGetter']);
 
 /**
  * some comment
  */
-const anotherGetter = computed(() => store.getters['MyModule/anotherGetter']);
+const anotherGetter = computed(() => $store.getters['MyModule/anotherGetter']);
 </script>
 
 <script>

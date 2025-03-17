@@ -20,7 +20,7 @@ export function renderVuexGetterNode(node: VuexGetterNode) {
           [],
           b.memberExpression(
             b.memberExpression(
-              b.identifier('store'),
+              b.identifier('$store'),
               b.identifier('getters'),
             ),
             namespacedGetterExpression,

@@ -4,9 +4,9 @@
 
 <script setup>
 import { useStore } from 'vuex';
-const store = useStore();
+const $store = useStore();
 
 const trigger = () => {
-  store.dispatch('foo', 5);
+  $store.dispatch('foo', 5);
 };
 </script>

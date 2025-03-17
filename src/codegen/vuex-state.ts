@@ -6,7 +6,7 @@ export function renderVuexStateNode(node: VuexStateNode) {
     b.identifier('getVuexState'),
     [
       b.memberExpression(
-        b.identifier('store'),
+        b.identifier('$store'),
         b.identifier('state'),
       ),
       node.namespace,
