@@ -7,7 +7,7 @@ import { computed } from 'vue';
 
 import { useStore } from 'vuex';
 
-const store = useStore();
+const $store = useStore();
 
 /**
  * accesses a vuex state 
@@ -21,23 +21,23 @@ const getVuexState = (obj: Record<string, any>, namespace: string, path = namesp
 };
 
 const upperFoo = computed(() => {
-  const state = getVuexState(store.state, 'Foo/Bar');
+  const state = getVuexState($store.state, 'Foo/Bar');
   return state.item.toUpperCase();
 });
 
-const foo = computed(() => getVuexState(store.state, 'Foo/Bar')['item']);
+const foo = computed(() => getVuexState($store.state, 'Foo/Bar')['item']);
 
 const bar = computed(() => {
   return foo.value * upperFoo.value;
 });
 
 const snakeFoo = computed(() => {
-  const state = getVuexState(store.state, 'Foo/Bar');
+  const state = getVuexState($store.state, 'Foo/Bar');
   return state.item.toSnakeCase();
 });
 
 const kebabFoo = computed(() => {
-  const state = getVuexState(store.state, 'Foo/Bar');
+  const state = getVuexState($store.state, 'Foo/Bar');
   return state.item.toKebabCase();
 });
 </script>

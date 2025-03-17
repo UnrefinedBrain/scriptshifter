@@ -24,7 +24,7 @@ export function renderVuexActionNode(node: VuexActionNode, isTypescript: boolean
         [varName],
         b.callExpression(
           b.memberExpression(
-            b.identifier('store'),
+            b.identifier('$store'),
             b.identifier('dispatch'),
           ),
           [

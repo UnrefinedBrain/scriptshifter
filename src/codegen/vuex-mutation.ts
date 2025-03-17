@@ -26,7 +26,7 @@ export function renderVuexMutationNode(node: VuexMutationNode, isTypescript: boo
           b.expressionStatement(
             b.callExpression(
               b.memberExpression(
-                b.identifier('store'),
+                b.identifier('$store'),
                 b.identifier('commit'),
               ),
               [

@@ -4,9 +4,9 @@
 
 <script setup>
 import { getCurrentInstance } from 'vue';
-const store = getCurrentInstance().proxy.$store;
+const $store = getCurrentInstance().proxy.$store;
 
 const trigger = () => {
-  store.dispatch('foo', 5);
+  $store.dispatch('foo', 5);
 };
 </script>

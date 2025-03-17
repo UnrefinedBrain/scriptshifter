@@ -6,8 +6,8 @@
 import { useStore } from 'vuex';
 import { useCartStore } from '@/stores/cart';
 
-const store = useStore();
-const vuexAction = (payload) => store.dispatch('User/vuexAction', payload);
+const $store = useStore();
+const vuexAction = (payload) => $store.dispatch('User/vuexAction', payload);
 const cartStore = useCartStore();
 
 const log = () => {
