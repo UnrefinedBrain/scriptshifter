@@ -1,4 +1,5 @@
 import { expect, it } from 'vitest';
+import { EOL } from 'os';
 import { transform } from 'vue-metamorph';
 import { scriptshifter } from '../compile';
 
@@ -17,7 +18,7 @@ it.each([
 
   const result = transform(source, `file.${fileType}`, [scriptshifter]);
 
-  expect(result.code).toBe(source);
+  expect(normalizeLinebreaks(result.code)).toBe(source);
 });
 
 it('should do nothing if the component is already a <script setup> component', () => {
@@ -32,5 +33,9 @@ const count = 2;
 
   const result = transform(source, 'file.vue', [scriptshifter]);
 
-  expect(result.code).toBe(source);
+  expect(normalizeLinebreaks(result.code)).toBe(source);
 });
+
+export function normalizeLinebreaks(code: string) {
+  return EOL === '\n' ? code : code.replaceAll(EOL, '\n');
+}
