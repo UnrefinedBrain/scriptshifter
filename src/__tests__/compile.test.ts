@@ -3,6 +3,10 @@ import { EOL } from 'os';
 import { transform } from 'vue-metamorph';
 import { scriptshifter } from '../compile';
 
+export function normalizeLinebreaks(code: string) {
+  return EOL === '\n' ? code : code.replaceAll(EOL, '\n');
+}
+
 it.each([
   'js',
   'ts',
@@ -35,7 +39,3 @@ const count = 2;
 
   expect(normalizeLinebreaks(result.code)).toBe(source);
 });
-
-export function normalizeLinebreaks(code: string) {
-  return EOL === '\n' ? code : code.replaceAll(EOL, '\n');
-}
