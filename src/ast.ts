@@ -412,7 +412,7 @@ export type ScriptSetupAst = {
   piniaStates: Record<string, PiniaStateNode>;
   piniaWritableStates: PiniaWritableStateNode[];
   unknowns: UnknownNode[];
-  setupVarNames: Record<string, true>;
+  setupVarNames: Record<string, 'ref' | 'raw'>;
 
   /**
    * statements that came before the options block, such as imports, top-level variables, etc.

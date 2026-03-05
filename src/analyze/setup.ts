@@ -6,9 +6,37 @@ import {
 } from 'vue-metamorph';
 import { isPattern } from './utils';
 
+const REF_PRODUCING_FUNCTIONS = new Set([
+  'ref', 'shallowRef', 'computed', 'customRef', 'toRef',
+]);
+
+function isRefProducingCall(node: Kinds.ExpressionKind): boolean {
+  return node.type === 'CallExpression'
+    && node.callee.type === 'Identifier'
+    && REF_PRODUCING_FUNCTIONS.has(node.callee.name);
+}
+
+function findVarInit(
+  statements: Kinds.StatementKind[],
+  varName: string,
+): Kinds.ExpressionKind | null {
+  for (const stmt of statements) {
+    if (stmt.type !== 'VariableDeclaration') continue;
+    for (const decl of stmt.declarations) {
+      if (decl.type === 'VariableDeclarator'
+        && decl.id.type === 'Identifier'
+        && decl.id.name === varName
+        && decl.init) {
+        return decl.init;
+      }
+    }
+  }
+  return null;
+}
+
 export function analyzeSetup(setup: n.ArrowFunctionExpression): {
   statements: Kinds.StatementKind[];
-  names: Record<string, true>;
+  names: Record<string, 'ref' | 'raw'>;
 } {
   if (setup.body.type !== 'BlockStatement') {
     return {
@@ -28,7 +56,7 @@ export function analyzeSetup(setup: n.ArrowFunctionExpression): {
     };
   }
 
-  const names: Record<string, true> = {};
+  const names: Record<string, 'ref' | 'raw'> = {};
 
   for (const prop of returnStatement.argument.properties) {
     if (prop.type === 'Property') {
@@ -36,7 +64,8 @@ export function analyzeSetup(setup: n.ArrowFunctionExpression): {
         && prop.value.type === 'Identifier'
         && prop.key.name === prop.value.name
       ) {
-        names[prop.key.name] = true;
+        const init = findVarInit(statements, prop.value.name);
+        names[prop.key.name] = init && isRefProducingCall(init) ? 'ref' : 'raw';
         // case 1: not creating a new variable in the return body
         continue;
       }
@@ -56,7 +85,7 @@ export function analyzeSetup(setup: n.ArrowFunctionExpression): {
           ),
         );
 
-        names[prop.key.name] = true;
+        names[prop.key.name] = isRefProducingCall(prop.value) ? 'ref' : 'raw';
       }
     }
 

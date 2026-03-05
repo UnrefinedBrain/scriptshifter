@@ -15,9 +15,12 @@ export default {
   setup() {
     const foo = ref(4);
     const bar = useBar();
+    const five = 5;
 
     return {
       foo,
+      baz: 5,
+      five,
       ...bar
     }
   }

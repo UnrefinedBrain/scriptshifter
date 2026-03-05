@@ -488,7 +488,8 @@ export function transformThisExpressions(ast: ScriptSetupAst, nodeTypes: NodeTyp
             case referencedNodeType === 'piniaStore': return accessPatterns.raw();
             case referencedNodeType === 'method': return accessPatterns.raw();
             case referencedNodeType === 'vuexAction': return accessPatterns.raw();
-            case ast.setupVarNames[name]: return accessPatterns.raw();
+            case ast.setupVarNames[name] === 'ref': return accessPatterns.ref();
+            case ast.setupVarNames[name] === 'raw': return accessPatterns.raw();
 
             // this.storeAction ---> storeName.storeAction
             case referencedNodeType === 'piniaAction': return accessPatterns.piniaAction();
