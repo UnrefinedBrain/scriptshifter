@@ -9,7 +9,10 @@ export default {
   computed: {
     isFoo5() {
       return this.foo === 5;
-    }
+    },
+    doesComputedTransform() {
+      return this.refLike === this.foo;
+    },
   },
 
   setup() {
@@ -21,6 +24,7 @@ export default {
       foo,
       baz: 5,
       five,
+      refLike: computed(() => foo.value),
       ...bar
     }
   }
